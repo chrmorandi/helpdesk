@@ -1,0 +1,13 @@
+tests/
+.idea/
+config/web.php
+config/console.php
+config/db.php
+config/params.php
+models/Notification.php
+vendor/
+web/attach/*
+web/assets/*
+access.log
+error.log
+runtime

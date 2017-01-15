@@ -1,0 +1,648 @@
+@media (max-width: 1366px) {
+    h5.from {
+        display: none;
+    }
+}
+
+html, body{
+    min-height: 100%;
+    position: relative;
+}
+aside.main-sidebar{
+    position: fixed;
+}
+
+.status {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+}
+
+.important {
+    position: absolute;
+    right: 3px;
+    top: 30px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: url(/images/star.png) no-repeat;
+}
+
+.daemons-control{
+    /* height: 100px; */
+    position: absolute;
+    right: 0;
+    display: none;
+    background: rgb(88, 142, 154);
+    padding: 20px;
+    z-index: 100000;
+    top: 50px;
+    font: 12px monospace, terminal;
+    overflow: scroll;
+}
+.daemons-control ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.statusnominal{
+    background: brown;
+}
+.error-message{
+    padding: 10px;
+    font: bold 1em Monospace;
+    color: cadetblue;
+}
+.st{
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.count-mails{
+    position: absolute;
+    left: -7px;
+    padding: 2px 5px;
+}
+td.action{
+    padding: 30px;
+}
+.daemons-control th{
+    text-align: center;
+}
+.daemons-control a{
+    color: #ffffff;
+}
+.statusrunning{
+    background: green;
+}
+
+td span{
+    padding: 5px;
+    color: #fff;
+}
+div.subject {
+    max-width: 600px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.success {
+    background: #6dff66;
+}
+section.content{
+    padding: 0;
+}
+#chat {
+    width: 20%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+}
+
+#selected-menu {
+    background-color: #eee
+}
+
+/*
+ * Masthead for nav
+ */
+
+.blog-masthead {
+    background-color: #428bca;
+    box-shadow: inset 0 -2px 5px rgba(0, 0, 0, .1);
+}
+
+/* Nav links */
+.blog-nav-item {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    font-weight: 500;
+    color: #cdddeb;
+}
+
+.blog-nav-item:hover,
+.blog-nav-item:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Active state gets a caret at the bottom */
+.blog-nav .active {
+    color: #fff;
+}
+
+.blog-nav .active:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -5px;
+    vertical-align: middle;
+    content: " ";
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid;
+    border-left: 5px solid transparent;
+}
+
+.close-connect {
+    background: #ff131d;
+}
+
+header.main-header > a.logo {
+    width: 17%;
+}
+
+nav.navbar.navbar-static-top {
+    width: 83%;
+    margin: 0;
+    float: right;
+}
+
+.form-group {
+    width: 20%;
+    float: left;
+    margin-right: 20px;
+}
+div input.labelauty + label{
+    float: left;
+    margin: 2px 10px;
+    padding: 5px;
+}
+.ssl {
+    display: inline-block;
+    padding-left: 30px;
+    position: relative;
+}
+div.attachment-block{
+    border: none;
+    margin-bottom: 0;
+}
+.container ul.nav{
+    margin-right: 5px;
+}
+
+ul.pagination {
+    position: absolute;
+    top: 30px;
+    left: 70%;
+    font-size: 18px;
+}
+
+.empty-mails{
+    padding: 10px;
+    font: 16px Monospace, terminal;
+
+}
+
+.summ-mail{
+    padding: 5px;
+    background: snow;
+    font: 16px monospace, terminal;
+    color: brown;
+}
+p.date {
+    text-align: right;
+    padding-right: 20px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    color: #504d4d;
+    font-size: 1em;
+    font-family: serif;
+}
+
+div.box.unseen {
+    background: #dce6ef;
+    opacity: 1;
+}
+
+#ssl {
+    margin: 0;
+    position: absolute;
+    top: 4px;
+    left: 78px;
+}
+
+h5.from {
+    float: left;
+    width: 25%;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: Terminal, monospace;
+    font-weight: 700;
+}
+
+h5.subj {
+    text-align: left;
+    padding-left: 10px;
+    width: 50%;
+    font-family: Terminal, monospace;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.close-mass {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+}
+
+header.main-header {
+    position: fixed;
+    width: 100%;
+}
+
+.text-blocks {
+    width: 45%;
+    float: left;
+}
+
+.dz-message {
+    text-align: center;
+    padding-top: 30px;
+}
+
+div#drop {
+    width: 50%;
+    float: right;
+    background: #6f9ec7;
+    border: none;
+    height: 341px;
+    margin-top: 25px;
+    border-radius: 3px;
+    color: #FFF;
+    overflow: scroll;
+}
+
+.attach-block {
+    width: 80%;
+    float: right;
+}
+
+div.dropzone .dz-preview .dz-image {
+    border-radius: 0;
+}
+
+.console {
+    background-color: #333;
+    color: #fff;
+}
+
+.console:hover {
+    color: #fff;
+}
+
+.drag-console {
+    width: 20%;
+    height: 30px;
+    border-bottom-left-radius: 5px;
+    position: absolute;
+    background: cadetblue;
+    margin-bottom: 5px;
+    right: 0;
+    top: 0;
+    text-align: center;
+}
+
+.folders div.folder {
+    color: #ecd4b3;
+}
+
+.skin-red .main-header .navbar .nav>li>a{
+    cursor: pointer;
+}
+#editor{
+    right: -100%;
+    width: 83%;
+    margin-top: 50px;
+    z-index: 100;
+}
+
+.control-editor{
+    position: fixed;
+    top: -100%;
+    right: 25%;
+    text-align: right;
+    z-index: 1000;
+}
+.control-editor div{
+    border-radius: 0;
+}
+.eval-code{
+    position: fixed;
+    height: 40%;
+    background: #f1f1f1;
+    width: 83%;
+    bottom: -100%;
+    right: 0;
+    z-index: 100000;
+    padding: 10px;
+    font-family: MONOSPACE;
+    color: #0c0b0b;
+    overflow: scroll;
+    margin-bottom: 0;
+    border-radius: 0;
+}
+#client {
+    color: #FFFFFF;
+    background-color: #281022;
+    padding: 10px;
+    font-family: Terminal, monospace;
+    height: 400px;
+    overflow: scroll;
+    position: absolute;
+    width: 90%;
+    cursor: pointer;
+    z-index: 99999;
+}
+#hosting-modal .form-group{
+    width: 100%;
+}
+#tableBrowse {
+    background: #281022;
+    color: #e4e4e4;
+    font-weight: 600;
+    font-family: Terminal, monospace;
+}
+
+#tableBrowse tbody tr:hover {
+    background-color: #403e3e;
+}
+
+#tableBrowse td {
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 5px;
+    white-space: nowrap;
+}
+
+#sftp {
+    position: relative;
+    padding: 15px;
+}
+
+#client pre {
+    background: inherit;
+    color: inherit;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.con-block {
+    float: left;
+    border: none
+}
+
+#command, p.con-block {
+    margin-left: 10px;
+    background: inherit;
+    padding: 0;
+}
+
+#command:focus {
+    outline: none;
+}
+
+.attachFile {
+    display: inline-block;
+    padding: 5px;
+    background: crimson;
+    border-radius: 2px;
+    color: white;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    position: relative;
+}
+
+.attachFile .fa {
+    position: absolute;
+    right: -4px;
+    color: black;
+    top: -7px;
+}
+
+.attachFile .fa:hover {
+    color: #00a7d0;
+}
+
+div.dropzone .dz-preview.dz-image-preview {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.control-sidebar.control-sidebar-open + .control-sidebar-bg, aside.control-sidebar.control-sidebar-open {
+    width: 83%;
+}
+
+.folders {
+    height: 40px;
+    width: 50%;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.mass {
+    position: relative;
+}
+
+.folder {
+    height: 35px;
+    float: left;
+    margin-right: 10px;
+    cursor: pointer;
+    font-weight: 400;
+    color: #FFF;
+}
+
+.tt-scrollable-menu div.tt-menu {
+    width: auto;
+    max-height: 300px;
+    z-index: 9999;
+}
+
+div.tt-menu > div.tt-dataset a {
+    color: #00a7d0;
+    cursor: pointer;
+    width: 100%;
+}
+
+.reply-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.hide-preview {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    width: 10%;
+    text-align: center;
+}
+
+.search-bt {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: right;
+}
+
+#search-form {
+    position: relative;
+}
+
+#container-massage {
+    max-height: 400px;
+}
+
+.content-wrapper {
+    min-height: 544px;
+    width: 83%;
+    float: right;
+}
+
+.get-mail {
+    width: 87%;
+    overflow: hidden;
+}
+
+.hide-preview i:hover {
+    color: #00a7d0;
+}
+
+#container-edit {
+    z-index: 10;
+    background: #FFF;
+    padding-top: 50px;
+    height: auto;
+    right: -100%;
+    width: 83%;
+    overflow: scroll;
+}
+
+#container-edit .wrapper {
+    background-color: #688ea0;
+}
+
+.textHtml {
+    overflow-y: hidden;
+    margin: 0 auto;
+    border: 0;
+    visibility: hidden;
+}
+
+#container-edit table p {
+    word-break: break-all;
+}
+
+#view-attach {
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px 0 0 20px;
+    background: #F7F7F7;
+}
+
+#replyForm {
+    padding: 20px;
+    border: none;
+    background: #F7F7F7;
+}
+
+.li-att {
+    list-style: none;
+    font-weight: 600;
+    padding: 10px;
+}
+
+.info-mass {
+    float: left;
+    position: relative;
+    background: #F7F7F7;
+    padding-top: 5px;
+    width: 100%;
+    -webkit-box-shadow: inset 0px 5px 24px -14px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 5px 24px -14px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 5px 24px -14px rgba(0,0,0,0.75);
+}
+div.box{
+    margin-bottom: 0;
+}
+ul.navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > div > img {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+}
+
+
+.reply{
+    font: 16px MONOSPACE,terminal;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #6f9ec7;
+    color:white
+}
+
+.reply:hover{
+    background: #5489c7;
+}
+
+
+.new {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+div.mail-box {
+    margin-bottom: 0;
+    padding-left: 40px;
+    border-top: 2px solid;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.2s;
+    opacity: 0.7;
+}
+
+.pagination a,
+ul.pagination > li:first-child > a,
+ul.pagination > li:first-child > span,
+ul.pagination > li:last-child > span,
+.pagination > .disabled>span,
+ul.pagination > li:last-child > a{
+    border-top-left-radius: 0;
+    border-bottom-left-radius:0;
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+    height: 44px;
+}
+
+div.box.box-success {
+    border-top-color: transparent;
+}
+
+div.mail-box:hover {
+    background-color: #f1efef;
+    opacity: 1;
+}
+
+.buttons {
+    padding-top: 25px;
+}
+
+#preload {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: url('../images/preloader.gif') center no-repeat;
+    height: 100%;
+    background-color: #FFF;
+}
+
+#massages {
+    width: 380px;
+}

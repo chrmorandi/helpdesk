@@ -1,0 +1,54 @@
+<?php
+
+namespace app\models;
+use yii\base\Model;
+
+class Notification extends Model
+{
+
+    /*
+     * Register on pushall.ru
+     * Get : ***SELF*** KEY && ID
+     * Subscribe on channel
+     */
+
+    public $id = "id";
+
+    public $key = "key";
+
+    public $type = "self";
+
+
+    /*
+     * Icon message block
+     * 300 x 300
+     */
+
+    public $icon = "https://royallepagenewsletter.files.wordpress.com/2015/04/gmail-icon.png?w=300&h=300";
+
+    /*
+     * Title message block
+     */
+
+    public $title = "HelpDesk Mailer";
+
+    /*
+     * Callback Url
+     */
+    public $url  = null;
+
+    /*
+     * Message text
+     */
+    public $text = null;
+
+
+    public function rules()
+    {
+        return [
+            [['url', 'text', 'title', 'icon'], 'string', 'max' => 255],
+            [['text', 'title', 'id', 'key', 'type'], 'required']
+        ];
+    }
+
+}
