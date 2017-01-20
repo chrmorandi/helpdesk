@@ -1,11 +1,12 @@
+
 <div id="sftp">
     <div class="form-group">
         <label class="pull-right" style="float: left" for="host">Host</label>
         <div class="clearfix"></div>
         <select class="form-control" name="host" id="host">
-            <? foreach ($hostlist as $val): ?>
+            <?php foreach ($hostList as $val): ?>
                 <option value="<?= $val->id ?>"><?= $val->hostname ?></option>
-            <? endforeach; ?>
+            <?php endforeach; ?>
         </select>
     </div>
     <div class="buttons">

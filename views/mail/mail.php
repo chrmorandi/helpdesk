@@ -2,6 +2,7 @@
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
+
 ?>
 <div id="mail-wrap">
     <?php Pjax::begin(); ?>

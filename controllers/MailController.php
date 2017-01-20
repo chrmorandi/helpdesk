@@ -54,14 +54,15 @@ class MailController extends AppController
         $provider = new ArrayDataProvider([
             'allModels' => $this->mails['data'],
             'pagination' => [
-                'pageSize' => 25,
+                'pageSize' => 25
             ],
         ]);
 
         return $this->render('mail', [
             'mails' => $provider,
             'folders' => $this->cache->get('folders'),
-            'currentFolder' => $this->getCurrentFolder()
+            'currentFolder' => $this->getCurrentFolder(),
+            'dbStatus' => Yii::getLogger()->getDbProfiling()
         ]);
     }
 
@@ -179,7 +180,8 @@ class MailController extends AppController
         return false;
     }
 
-    public function actionDeletemail($uid){
+    public function actionDeletemail($uid)
+    {
         return Mail::deleteOne($uid);
     }
 

@@ -6,6 +6,7 @@ use app\commons\CacheControlBehavior;
 use Ratchet\Wamp\Exception;
 use Yii;
 use yii\base\Model;
+use yii\caching\TagDependency;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use RecursiveArrayIterator;
@@ -36,7 +37,7 @@ class Mail extends \yii\db\ActiveRecord
 
     public function behaviors()
     {
-        return[
+        return [
             'cacheBehavior' => [
                 'class' => CacheControlBehavior::className()
             ]
@@ -48,9 +49,9 @@ class Mail extends \yii\db\ActiveRecord
         return 'mail';
     }
 
-    public static function getData(array $prop) : array
+    public static function getData(array $prop): array
     {
-        $query =  Yii::$app->db->cache(function ($db) use ($prop) {
+        $query = Yii::$app->db->cache(function ($db) use ($prop) {
             return [
                 'data' => ArrayHelper::index(Mail::find()
                     ->where($prop)
@@ -64,7 +65,8 @@ class Mail extends \yii\db\ActiveRecord
         return $query;
     }
 
-    public static function deleteOne(int $uid){
+    public static function deleteOne(int $uid)
+    {
         return Mail::deleteAll(['uid' => $uid]);
     }
 
@@ -98,7 +100,7 @@ class Mail extends \yii\db\ActiveRecord
 
     }
 
-    private function getParentReplys(string $in_reply_to = null) : self
+    private function getParentReplys(string $in_reply_to = null): self
     {
         $reply = $this->findMail(['message_id' => $in_reply_to]);
         $next = $reply->in_reply_to;
@@ -110,9 +112,10 @@ class Mail extends \yii\db\ActiveRecord
         return $this;
     }
 
-    public function sortByUnix($key){
-        if(!empty($this->mail[$key])){
-            usort($this->mail[$key], function ($a, $b){
+    public function sortByUnix($key)
+    {
+        if (!empty($this->mail[$key])) {
+            usort($this->mail[$key], function ($a, $b) {
                 if ($a['udate'] == $b['udate']) {
                     return 0;
                 }
@@ -121,7 +124,7 @@ class Mail extends \yii\db\ActiveRecord
         }
     }
 
-    private function getChildReplys(string $massage_id = null) : self
+    private function getChildReplys(string $massage_id = null): self
     {
         $reply = $this->findMail(['in_reply_to' => $massage_id]);
         if (!empty($reply)) {

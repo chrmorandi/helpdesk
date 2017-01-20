@@ -32,7 +32,8 @@ var NotificationView = Backbone.View.extend({
         var target;
         if (!event && link != null) {
             uid = link.attr('data-target');
-            link.hide();
+            if(link.hasClass('get-mail')) link.hide();
+            $('a.get-mail[data-target='+uid+']').closest('li').hide();
         } else {
             target = event.currentTarget;
             uid = $(target).attr('data-target');

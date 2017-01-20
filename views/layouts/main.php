@@ -24,8 +24,8 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
     <?= $this->render(
         'header.php', [
             'directoryAsset' => $directoryAsset,
-            'folders' => $this->params['folders'],
-            'mails' => $this->params['unseenMails']
+            'folders' => Yii::$app->cache->get('folders'),
+            'mails' => Yii::$app->cache->get('unseenMails')
         ]
     ) ?>
 

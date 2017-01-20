@@ -19,7 +19,6 @@ class SocketServer extends BaseServer{
         $socket = $context->getSocket(\ZMQ::SOCKET_PUSH, 'mail push');
         $socket->connect("tcp://127.0.0.1:5555");
         $socket->send(json_encode($data));
-        echo "data sended";
     }
 
     /**

@@ -31,7 +31,7 @@ function reduceCount(elem) {
 }
 
 function wrapText(text) {
-    return "<pre>" + text + "</pre>";
+    return "<pre style='white-space: pre-line;'>" + text + "</pre>";
 }
 
 function getToken() {

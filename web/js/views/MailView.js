@@ -73,7 +73,7 @@ var MailView = Backbone.View.extend({
         if (this.mail.text_mail.textHtml) {
             var text = this.mail.text_mail.textHtml,
                 body = frameBody.css({
-                'height ': 'inherit !important',
+                'height ': '!important',
                 'margin': '0',
                 'display': 'table'
             });
@@ -88,19 +88,17 @@ var MailView = Backbone.View.extend({
             'overflow': 'hidden',
             'width': '50%',
             'margin': '0 auto',
-            'padding': '10px'
+            'display':'table'
         });
 
-        frameBody.find('div.gmail_quote').first()
-            .prepend("<div class='show-quote'>Показать цитируемый текст</div>")
-            .find('blockquote').first().hide();
-
+        frameBody.find('blockquote').first()
+            .wrap("<div class='show-quote'>Показать цитируемый текст</div>")
+            .hide();
         frameBody.find('.show-quote').css({
-            'padding': '6px 6px 6px 0',
             'color': 'brown',
             'cursor': 'pointer'
         }).on('click', function () {
-            $(this).siblings('blockquote').slideToggle(0, function () {
+            $(this).find('blockquote').first().slideToggle(0, function () {
                 app.gmail.Mail.setContentHeight();
             })
         });

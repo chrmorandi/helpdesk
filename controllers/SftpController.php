@@ -31,11 +31,11 @@ class SftpController extends AppController
     public $host;
 
 
-    /**
-     * @var array $host
-     */
-    public $hostList;
-
+    public function init()
+    {
+        $this->sftp = Yii::$app->sftp;
+        parent::init();
+    }
 
     /**
      * @param \yii\base\Action $action
@@ -44,35 +44,36 @@ class SftpController extends AppController
     public function beforeAction($action)
     {
         if ($this->request->isAjax) {
-            $this->sftp = Yii::$app->sftp;
-            $hostId = $this->request->get('hostId');
-            if (!empty($hostId)) {
-                $this->host = Hosting::findOne(['id' => $hostId]);
-                if (!$this->cache->exists('decodePass')) {
-                    $this->cache->set('decodePass', $this->decode($this->host->hostpass));
-                }
+            $id = $this->request->get('hostId');
+            if (!empty($id)) {
+                $this->host = Hosting::findOne(['id' => $id]);
                 $this->connect();
             }
         }
 
-        $this->hostList = Hosting::find()->select('*')->all();
         return parent::beforeAction($action);
 
     }
 
     private function connect()
     {
-        return $this->sftp->connect(
-            $this->host->hostip,
-            $this->host->hostuser,
-            $this->cache->get('decodePass')
-        );
+        if (!empty($this->host)) {
+            $pass = $this->cache->getOrSet('decodePassbyHost' . $this->host->id, function () {
+                return $this->decode($this->host->hostpass);
+            });
+            return $this->sftp->connect(
+                $this->host->hostip,
+                $this->host->hostuser,
+                $pass
+            );
+        }
+        return false;
     }
 
     public function actionIndex()
     {
         return $this->render('index', [
-            'hostlist' => $this->hostList
+            'hostList' => Hosting::find()->select('*')->all()
         ]);
     }
 

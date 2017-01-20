@@ -12,7 +12,6 @@ use yii\helpers\Html;
             <?php foreach($folders as $folder):?>
             <a href="<?= \yii\helpers\Url::toRoute(["mail/view","folder_name"=>$folder->folder_name]) ?>">
                 <div style="position: relative" class="folder">
-                    <span class="label count-mails label-success"><?= $folder->getCountMails($folder->id) ?></span>
                     <i style="font-size: 25px" class="fa fa-folder-open" aria-hidden="true"></i>
                     <p style="float: right;color: #FFF;margin: 3px 0 0 5px"><?= $folder->folder_name ?></p>
                 </div>

@@ -79,6 +79,9 @@ td span{
     padding: 5px;
     color: #fff;
 }
+.box.box-solid>div.box-header .close-mass a:hover{
+    background: inherit;
+}
 div.subject {
     max-width: 600px;
     overflow: hidden;
