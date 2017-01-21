@@ -52,17 +52,14 @@ class TextMail extends ActiveRecord
     {
         if (parent::beforeSave($insert)) {
             foreach ($this->attach as $item) {
-                $exp = explode('/', $item->filePath);
-                $filename = array_pop($exp);
-                if (!empty($filename)) {
-                    $model = new AttachmentMail();
-                    $model->setAttributes([
-                        'fileName' => $filename,
-                        'mail_uid' => $this->mail_uid
-                    ]);
-                    if ($model->validate())
-                        $model->save();
-                }
+                $model = new AttachmentMail();
+                $model->setAttributes([
+                    'fileName' => $item->filename,
+                    'mail_uid' => $this->mail_uid
+                ]);
+                if ($model->validate())
+                    $model->save();
+
             }
             return true;
         }

@@ -2,7 +2,7 @@ var NotificationView = Backbone.View.extend({
 
     events: {
         "click .hide-preview": 'hideMail',
-        "click .get-mail": "hide"
+        "click .get-mail": "hideMail"
     },
 
     initialize: function () {
@@ -24,22 +24,12 @@ var NotificationView = Backbone.View.extend({
 
     hideMail: function (event) {
         var link = $(event.currentTarget).closest('li').find('a.get-mail');
-        this.hide(null, link);
+        this.hide(link.attr('data-target'));
     },
 
-    hide: function (event, link) {
-        var uid;
-        var target;
-        if (!event && link != null) {
-            uid = link.attr('data-target');
-            if(link.hasClass('get-mail')) link.hide();
-            $('a.get-mail[data-target='+uid+']').closest('li').hide();
-        } else {
-            target = event.currentTarget;
-            uid = $(target).attr('data-target');
-            $(target).hide();
-        }
-
+    hide: function (uid) {
+        var target = $('a.get-mail[data-target='+uid+']').closest('li');
+        target.hide();
         app.ajax('/mail/seen', {uid: uid});
         reduceCount('.c-gmail');
     }

@@ -55,7 +55,7 @@ class FolderMail extends \yii\db\ActiveRecord
         return self::findOne(['folder_name'=>$folder_name])->id;
     }
 
-    public function getCountMails($folder_id)
+    public function getCountOnFolder($folder_id)
     {
         return Mail::find()->where(['folder_id'=>$folder_id])->count();
     }

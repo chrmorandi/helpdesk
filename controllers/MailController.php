@@ -166,18 +166,13 @@ class MailController extends AppController
         return false;
     }
 
-    public function actionDeletefile($uid = null, $fileName = null)
+    public function actionDeletefile($uid)
     {
-        if (!empty($fileName)) {
-            $file = new AttachmentMail();
-            $file->deleteFile($fileName);
-        } elseif (!empty($uid)) {
-            $model = AttachmentMail::findOne(['mail_uid' => $uid]);
-            if (!empty($model) && $model->deleteFile()) {
-                return true;
-            }
+        $model = AttachmentMail::findOne(['mail_uid' => $uid]);
+        if (!empty($model)) {
+            return $model->deleteFile();
         }
-        return false;
+
     }
 
     public function actionDeletemail($uid)

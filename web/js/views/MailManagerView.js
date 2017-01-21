@@ -21,7 +21,7 @@ var MailManager = Backbone.View.extend({
     updateNotification: function (event) {
         var link = $(event.currentTarget);
         if (link.attr('data-num') == '0') {
-            app.gmail.Notifi.hide(null, link);
+            app.gmail.Notifi.hide(link.attr('data-target'));
             link.closest('div.unseen').removeClass('unseen')
         }
     }

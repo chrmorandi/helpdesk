@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\base\ExitException;
+use yii\db\Exception;
 
 /**
  * This is the model class for table "attachment_mail".
@@ -20,22 +22,22 @@ class AttachmentMail extends \yii\db\ActiveRecord
 
     public function deleteAllFiles(int $uid)
     {
-        $files = AttachmentMail::find()->where(['mail_uid' => $uid])->asArray()->all();
+        $files = AttachmentMail::find()->where(['mail_uid' => $uid])->all();
         if (!empty($files)) {
-            foreach ($files as $val)
-                $this->deleteFile($val['fileName']);
+            foreach ($files as $file)
+                $this->deleteFile($file->fileName);
         }
     }
 
-    public function deleteFile(string $fileName = null) : bool
+    public function deleteFile()
     {
-        if (!empty($fileName))
-            $this->fileName = $fileName;
+        if (!$this->fileName)
+            throw new Exception('file not found');
 
-        if (file_exists($this->getPathFile())) {
-            unlink($this->getPathFile());
-            AttachmentMail::delete();
-            return true;
+        $path = $this->getPathFile();
+        if (file_exists($path) && $path) {
+            unlink($path);
+            return AttachmentMail::delete();
         }
 
         return false;

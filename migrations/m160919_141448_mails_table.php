@@ -62,14 +62,19 @@ class m160919_141448_mails_table extends Migration
             ALTER TABLE `hosting` 
             ADD `public_key` 
             VARBINARY(255) 
-            NOT NULL 
+            NULL DEFAULT NULL 
             AFTER `hostip`, 
             ADD `hostpass` 
             VARBINARY(255) 
-            NULL DEFAULT NULL 
+            NOT NULL 
             AFTER `public_key`, 
-            ADD UNIQUE (`hostpass`)"
+            ADD UNIQUE (`hostuser`)"
         );
+
+        $this->insert('folder_mail', ['folder_name' => 'all']);
+        $this->insert('folder_mail', ['folder_name' => 'important']);
+        $this->insert('folder_mail', ['folder_name' => 'trash']);
+        $this->insert('folder_mail', ['folder_name' => 'sent']);
 
     }
 
@@ -80,6 +85,7 @@ class m160919_141448_mails_table extends Migration
         $this->dropTable('{{%attachment_mail}}');
         $this->dropTable('{{%text_mail}}');
         $this->dropTable('{{%hosting}}');
+        $this->dropTable('{{%folder_mail}}');
         echo "drop tables";
     }
 

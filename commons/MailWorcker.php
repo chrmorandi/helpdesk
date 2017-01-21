@@ -8,7 +8,6 @@ use app\models\FolderMail;
 use app\models\Mail;
 use app\models\TextMail;
 use Yii;
-use roopz\imap\Mailbox;
 
 class MailWorcker
 {
@@ -40,7 +39,7 @@ class MailWorcker
      *    UNSEEN - match mails which have not been read yet
      *
      */
-    private $criteria = 'UNSEEN';
+    public $criteria = 'UNSEEN';
 
 
     /**
@@ -99,11 +98,9 @@ class MailWorcker
                 continue;
             }
 
-
             $newMail->setAttributes($mail);
             if ($newMail->from == Yii::$app->params['adminEmail'] ||
-                $newMail->from == Yii::$app->params['adminEmailAndName']
-            )
+                $newMail->from == Yii::$app->params['adminEmailAndName'])
                 $newMail->folder_id = FolderMail::FOLDER_ALL;
 
             $newMail->save();
@@ -116,8 +113,9 @@ class MailWorcker
         foreach ($this->mails as $mail) {
             $model = new TextMail();
 
-            if (!$this->mailbox->getMailsInfo([$mail->uid]))
+            if (!$this->mailbox->getMailsInfo([$mail->uid])){
                 continue;
+            }
 
 
             if ($model::findOne(['mail_uid' => $mail->uid])) {
@@ -135,7 +133,7 @@ class MailWorcker
                               ?? $attributes->textPlain,
             ]);
 
-            if ($model->save() && $model->validate())
+            if ($model->validate() && $model->save())
                 unset($model);
 
         }

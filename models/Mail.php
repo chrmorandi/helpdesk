@@ -100,7 +100,7 @@ class Mail extends \yii\db\ActiveRecord
 
     }
 
-    private function getParentReplys(string $in_reply_to = null): self
+    protected function getParentReplys(string $in_reply_to = null): self
     {
         $reply = $this->findMail(['message_id' => $in_reply_to]);
         $next = $reply->in_reply_to;
@@ -112,7 +112,7 @@ class Mail extends \yii\db\ActiveRecord
         return $this;
     }
 
-    public function sortByUnix($key)
+    protected function sortByUnix($key)
     {
         if (!empty($this->mail[$key])) {
             usort($this->mail[$key], function ($a, $b) {
@@ -124,7 +124,7 @@ class Mail extends \yii\db\ActiveRecord
         }
     }
 
-    private function getChildReplys(string $massage_id = null): self
+    protected function getChildReplys(string $massage_id = null): self
     {
         $reply = $this->findMail(['in_reply_to' => $massage_id]);
         if (!empty($reply)) {
