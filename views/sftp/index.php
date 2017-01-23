@@ -41,10 +41,8 @@
     <div class="clearfix"></div>
 
     <div style="display: none" id="client" class="clent">
-        <div class="drag-console">dragged
-            <div class="pull-right"><i style="width: 20px" class="fa fa-close c-close" aria-hidden="true"></i>
-            </div>
-        </div>
+        <div class="handle"></div>
+        <div class="pull-right"><i style="width: 20px" class="fa fa-close c-close" aria-hidden="true"></i></div>
     </div>
     <div id="browse">
 

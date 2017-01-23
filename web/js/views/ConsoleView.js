@@ -7,11 +7,13 @@ var ConsoleView = Backbone.View.extend({
 
 
     initialize: function () {
-        this.$el.draggable({handle: '.drag-console', containment: ".wrapper"})
-            .resizable().click(function () {
-                $('#command').focus();
-            });
-
+        this.$el.resizable({
+            handleSelector: "> .handle",
+            resizeWidth: false,
+            resizeHeightFrom: 'top'
+        }).click(function () {
+            $('#command').focus();
+        });
         this.template = _.template($('#consoleTpl').html());
         this.listenTo(this.model, "change", this.render);
         this.render();
@@ -51,7 +53,7 @@ var ConsoleView = Backbone.View.extend({
     },
 
     toggle: function () {
-        this.$el.toggle()
+        this.$el.slideToggle()
     }
 
 });

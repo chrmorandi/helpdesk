@@ -330,6 +330,9 @@ div.dropzone .dz-preview .dz-image {
     text-align: right;
     z-index: 1000;
 }
+#console{
+    margin-top: 10px;
+}
 .control-editor div{
     border-radius: 0;
 }
@@ -348,17 +351,30 @@ div.dropzone .dz-preview .dz-image {
     margin-bottom: 0;
     border-radius: 0;
 }
+#client .pull-right{
+    position: fixed;
+    right: 30px;
+}
+.handle{
+    touch-action: none;
+    height: 10px;
+    position: fixed;
+    width: 100%;
+    cursor: n-resize;
+}
 #client {
     color: #FFFFFF;
     background-color: #281022;
-    padding: 10px;
+    padding: 0 10px;
     font-family: Terminal, monospace;
-    height: 400px;
+    height: 299px;
     overflow: scroll;
-    position: absolute;
-    width: 90%;
+    position: fixed;
+    width: 83%;
     cursor: pointer;
     z-index: 99999;
+    bottom: 0;
+    right: 0;
 }
 #hosting-modal .form-group{
     width: 100%;
@@ -582,12 +598,12 @@ ul.navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > div > img 
 
 
 .reply{
-    font: 16px MONOSPACE,terminal;
+	font: 0.9em MONOSPACE,terminal;
     padding: 15px;
     cursor: pointer;
     transition: all 0.2s;
-    background: #6f9ec7;
-    color:white
+    background: rgba(199, 111, 123, 0.68);
+    color: white;
 }
 
 .reply:hover{

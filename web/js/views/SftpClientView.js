@@ -5,9 +5,9 @@ var SftpClientView = Backbone.View.extend({
         "click #consoleShow": "initConsole",
         "click #clearConsole": "flushConsole",
         "click .move": "moveTo",
-        "click #removeHost" : "removeSftpHost",
-        "change select#host" : "moveTo",
-        "click .getFile" : "getFile"
+        "click #removeHost": "removeSftpHost",
+        "change select#host": "moveTo",
+        "click .getFile": "getFile"
     },
 
     initialize: function () {
@@ -16,13 +16,13 @@ var SftpClientView = Backbone.View.extend({
     },
 
     removeSftpHost: function () {
-        if (confirm('you are sure')){
-            app.ajax('/sftp/remove-host',{id : app.sftp.host_id()});
+        if (confirm('you are sure')) {
+            app.ajax('/sftp/remove-host', {id: app.sftp.host_id()});
             $("select#host option:selected").remove();
             this.flushConsole();
-            if (!app.sftp.host_id()){
+            if (!app.sftp.host_id()) {
                 this.$el.find('#browse').remove();
-            }else this.moveTo();
+            } else this.moveTo();
         }
     },
 
@@ -33,6 +33,7 @@ var SftpClientView = Backbone.View.extend({
             'dir': this.model.get('dir')
         });
         this.$el.find('#browse').html(view);
+        this.initContext();
     },
 
     initConsole: function () {
@@ -42,9 +43,51 @@ var SftpClientView = Backbone.View.extend({
                 el: "#client",
                 model: app.sftp.ConsoleModel
             });
-            this.console.$el.show();
+            this.console.toggle();
         } else this.console.toggle();
 
+    },
+
+    initContext: function () {
+        $.contextMenu({
+            selector: '#tableBrowse td.move',
+            items: {
+                "NewFile": {
+                    name: "New file",
+                    icon: "fa-file-code-o",
+                    callback: function (itemKey, opt) {
+                        console.log(opt.$trigger.attr('data-target'));
+
+                    }
+                },
+                "NewFolder": {name: "New folder", icon: "fa-folder"},
+                "EditFolder": {name: "Edit folder", icon: "fa-edit"},
+                "Move": {name: "Move", icon: "fa-chevron-right"},
+                "Delete": {name: "Delete", icon: "fa-bitbucket"}
+            }
+        });
+        $.contextMenu({
+            selector: '#tableBrowse td.getFile',
+            items: {
+                "Edit": {
+                    name: "Edit file",
+                    icon: "fa-edit",
+                    callback: function (itemKey, opt) {
+                        console.log(opt.$trigger.attr('data-target'));
+
+                    }
+                },
+                "OpenInEditor": {
+                    name: "Open in editor",
+                    icon: "fa-file-code-o",
+                    callback: function (itemKey, opt) {
+                        console.log(opt.$trigger.attr('data-target'));
+
+                    }
+                },
+                "Delete": {name: "Delete file", icon: "fa-bitbucket"}
+            }
+        });
     },
 
     flushConsole: function () {
@@ -54,29 +97,32 @@ var SftpClientView = Backbone.View.extend({
 
     getFile: function (event) {
         var file = $(event.currentTarget).attr('data-target').slice(0, -1);
-        var path = this.model.get('dir') + '/'+ file;
-        var response = app.ajax('/sftp/get',{
+        var path = this.model.get('dir') + '/' + file;
+        var response = app.ajax('/sftp/get', {
             path: path,
             filename: file,
             extension: getExtensionFile(file),
-            hostId : app.sftp.host_id()
+            hostId: app.sftp.host_id()
         }, false);
-        var model = JSON.parse(response);
-        editor.load(model.contentFile, model.mode);
+        if (response === 'Is not read') app.error(response);
+        else {
+            var model = JSON.parse(response);
+            editor.load(model.contentFile, model.mode);
+        }
     },
 
     moveTo: function (event) {
         if (event)
-           var folder = $(event.currentTarget).attr('data-target');
+            var folder = $(event.currentTarget).attr('data-target');
 
         var currentDir = this.model.get('dir');
         var dir;
 
-        if(!folder) dir = currentDir;
-        else dir = currentDir+ "/" +folder;
+        if (!folder) dir = currentDir;
+        else dir = currentDir + "/" + folder;
 
-        var response = app.sftp.command('/sftp/move',{
-            dir : dir,
+        var response = app.sftp.command('/sftp/move', {
+            dir: dir,
             hostId: app.sftp.host_id()
         });
         this.model.set(response);

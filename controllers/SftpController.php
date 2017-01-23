@@ -6,6 +6,7 @@ namespace app\controllers;
 use Apolon\sftp\SFtpManager;
 use app\commons\Security;
 use app\models\Hosting;
+use yii\base\InvalidParamException;
 use yii\web\Controller;
 use Yii;
 use yii\base\Exception;
@@ -96,16 +97,19 @@ class SftpController extends AppController
     public function actionGet()
     {
         $params = $this->request->get();
-        if (!empty($params['path']) && $this->sftp->is_file($params['path'])) {
+        if (!empty($params['path']) && $this->sftp->is_file($params['path']) && $this->sftp->file_exists($params['path'])) {
             $contentFile = $this->sftp->get($params['path'], false);
             if (is_string($contentFile)) {
-                return Json::encode([
-                    'contentFile' => $contentFile,
-                    'mode' => $params['extension'],
-                    'time' => sprintf('%0.5f', Yii::getLogger()->getElapsedTime())
-                ]);
+                try {
+                    return Json::encode([
+                        'contentFile' => $contentFile,
+                        'mode' => $params['extension'],
+                        'time' => sprintf('%0.5f', Yii::getLogger()->getElapsedTime())
+                    ]);
+                } catch (InvalidParamException $e) {
+                    return 'Is not read';
+                }
             }
-            return false;
         }
     }
 

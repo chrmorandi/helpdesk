@@ -22,7 +22,8 @@ class AppAsset extends AssetBundle
         'css/dropzone.min.css',
         'css/jquery-ui.css',
         'css/jquery-labelauty.css',
-        'css/nprogress.css'
+        'css/nprogress.css',
+        'css/jquery.contextMenu.css'
     ];
     public $js = [
         'js/lib.js',
@@ -32,7 +33,8 @@ class AppAsset extends AssetBundle
         'js/vendor/underscore-min.js',
         'js/vendor/autobahn.min.js',
         'js/vendor/backbone.js',
-        'js/vendor/jquery-ui.js',
+        'js/vendor/jquery.contextMenu.min.js',
+        'js/vendor/jquery-resizable.js',
         'js/models/MailModel.js',
         'js/models/NotificationModel.js',
         'js/models/ConsoleModel.js',
