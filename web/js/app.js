@@ -87,7 +87,6 @@ $(document).ready(function () {
        if (daemons) $('.daemons-control').show().find('.list').html(daemons.list);
        return false;
     });
-
 });
 
 NProgress.configure({

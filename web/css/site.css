@@ -50,8 +50,9 @@ aside.main-sidebar{
 }
 .error-message{
     padding: 10px;
-    font: bold 1em Monospace;
-    color: cadetblue;
+    /* font: bold 1em Monospace; */
+    text-align: center;
+    color: #8e1212;
 }
 .st{
     color: #FFFFFF;
@@ -163,7 +164,7 @@ nav.navbar.navbar-static-top {
     float: right;
 }
 
-.form-group {
+.sftp-group {
     width: 20%;
     float: left;
     margin-right: 20px;
@@ -326,7 +327,7 @@ div.dropzone .dz-preview .dz-image {
 .control-editor{
     position: fixed;
     top: -100%;
-    right: 25%;
+    right: 5%;
     text-align: right;
     z-index: 1000;
 }
@@ -366,7 +367,8 @@ div.dropzone .dz-preview .dz-image {
     color: #FFFFFF;
     background-color: #281022;
     padding: 0 10px;
-    font-family: Terminal, monospace;
+    font-family: "DejaVu Sans Mono", "Liberation Mono", monospace;
+    font-size: 12px;
     height: 299px;
     overflow: scroll;
     position: fixed;
@@ -417,6 +419,7 @@ div.dropzone .dz-preview .dz-image {
 
 #command, p.con-block {
     margin-left: 10px;
+    width: 70%;
     background: inherit;
     padding: 0;
 }

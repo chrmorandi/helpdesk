@@ -1,7 +1,6 @@
 var ConsoleModel = Backbone.Model.extend({
     defaults: {
-        user : 'user@user:~',
-        dir:   "$",
+        user : 'user@host:~$ ',
         response: null
     }
 });

@@ -6,7 +6,7 @@
         <div id="userline" style="color: #50d050;" class="con-block">
             <%=model.user %>
         </div>
-        <div class="con-block" id="currentDirName"><%= model.dir %></div>
+        <div class="con-block" id="currentDirName">&#160;<%= model.dir %></div>
         <input type="text" class="con-block" id="command"><%= model.command%></input>
         <div class="clearfix"></div>
     </div>

@@ -6,6 +6,7 @@ namespace app\controllers;
 use Apolon\sftp\SFtpManager;
 use app\commons\Security;
 use app\models\Hosting;
+use phpseclib\Net\SSH2;
 use yii\base\InvalidParamException;
 use yii\web\Controller;
 use Yii;
@@ -38,6 +39,26 @@ class SftpController extends AppController
         parent::init();
     }
 
+    public function actionExec()
+    {
+        
+    }
+
+    public function createElement($params)
+    {
+
+    }
+
+    public function deleteElement($params)
+    {
+
+    }
+
+    public function updateElement($params)
+    {
+
+    }
+
     /**
      * @param \yii\base\Action $action
      * @return bool
@@ -56,6 +77,9 @@ class SftpController extends AppController
 
     }
 
+    /**
+     * @return bool|void
+     */
     private function connect()
     {
         if (!empty($this->host)) {
@@ -71,6 +95,9 @@ class SftpController extends AppController
         return false;
     }
 
+    /**
+     * @return string
+     */
     public function actionIndex()
     {
         return $this->render('index', [
@@ -86,14 +113,17 @@ class SftpController extends AppController
         $command = $this->request->get('command');
         if (!empty($command))
             return Json::encode([
-                'user' => "{$this->host->hostuser}@{$this->host->hostip}:~",
-                'response' => $this->sftp->createCommand($command),
+                'user' => "{$this->host->hostuser}@{$this->host->hostip}:~$ ",
+                'response' => $this->sftp->execCommand($command),
                 'dir' => $this->sftp->pwd(),
                 'hash' => rand(1, 10000),
                 'time' => sprintf('%0.5f', Yii::getLogger()->getElapsedTime())
             ]);
     }
 
+    /**
+     * @return string
+     */
     public function actionGet()
     {
         $params = $this->request->get();
@@ -103,7 +133,7 @@ class SftpController extends AppController
                 try {
                     return Json::encode([
                         'contentFile' => $contentFile,
-                        'mode' => $params['extension'],
+                        'mode' => str_replace('.', false, $params['extension']),
                         'time' => sprintf('%0.5f', Yii::getLogger()->getElapsedTime())
                     ]);
                 } catch (InvalidParamException $e) {
@@ -129,7 +159,8 @@ class SftpController extends AppController
             return Json::encode([
                 'list' => $list,
                 'dir' => $currentDir,
-                'time' => sprintf('%0.5f', Yii::getLogger()->getElapsedTime())
+                'time' => sprintf('%0.5f', Yii::getLogger()->getElapsedTime()),
+                'sftp'=>$this->sftp->getSFTPLog()
             ]);
         }
     }
@@ -149,6 +180,10 @@ class SftpController extends AppController
         return $this->redirect('/');
     }
 
+    /**
+     * @param $id
+     * @return false|int
+     */
     public function actionRemoveHost($id)
     {
         $model = Hosting::findOne($id);

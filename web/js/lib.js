@@ -14,7 +14,9 @@ function parseJson(json) {
 
 function getExtensionFile(filename) {
 
-    return filename.split('.').pop() || 'none';
+    if(filename.indexOf('.') != -1)
+      return '.' + filename.split('.').pop();
+    return 'unknown'
 }
 
 

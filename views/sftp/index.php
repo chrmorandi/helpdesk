@@ -1,6 +1,6 @@
 
 <div id="sftp">
-    <div class="form-group">
+    <div class="sftp-group form-group">
         <label class="pull-right" style="float: left" for="host">Host</label>
         <div class="clearfix"></div>
         <select class="form-control" name="host" id="host">
@@ -37,6 +37,17 @@
         ]) ?>
 
         <?php \yii\bootstrap\Modal::end(); ?>
+
+        <?php \yii\bootstrap\Modal::begin([
+            'id' => 'remote-element-modal',
+            'header' => 'Create',
+            'size' => 'modal-sm',
+            'closeButton' => ['tag' => 'button', 'label' => '&times;'],
+            'clientOptions' => false,
+        ]); ?>
+
+
+        <?php \yii\bootstrap\Modal::end(); ?>
     </div>
     <div class="clearfix"></div>
 
@@ -51,6 +62,8 @@
     <?= $this->render('//tpl/_console') ?>
 
     <?= $this->render('//tpl/_browser') ?>
+
+    <?= $this->render('//tpl/_formRemoteElement') ?>
 
     <script>
         window.onload = function () {

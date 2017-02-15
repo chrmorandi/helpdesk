@@ -35,7 +35,7 @@
                 <a><%= elem.filename %></a>
             </td>
             <td><%= (elem.size == '4096') ? '-' : elem.size %></td>
-            <td><%= (type == 'file') ? 'файл (.'+ getExtensionFile(elem.filename)+')' : 'папка'%></td>
+            <td><%= (type == 'file') ? 'файл ('+ getExtensionFile(elem.filename)+')' : 'папка'%></td>
             <td><%= elem.uid %></td>
             <td><%= elem.permissions %></td>
             <td><%= convertUnixDate(elem.atime) %></td>
